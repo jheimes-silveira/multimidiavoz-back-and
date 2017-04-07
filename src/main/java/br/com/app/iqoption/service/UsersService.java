@@ -1,7 +1,6 @@
 package br.com.app.iqoption.service;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +11,8 @@ import br.com.app.iqoption.request.UsersRequest;
 import br.com.app.iqoption.response.LogarResponse;
 import br.com.app.iqoption.response.UsersResponse;
 import br.com.app.iqoption.utils.Constants;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
 public class UsersService {
@@ -52,13 +53,21 @@ public class UsersService {
 	public LogarResponse logar(UsersRequest usersRequest) {
 		LogarResponse logarResponse = new LogarResponse();
 		Contato contato = repository.findByLogin(usersRequest.getTelefone(), usersRequest.getSenha());
-
+		if (contato == null) {
+			logarResponse.getMeta().setOk(false);
+			logarResponse.getMeta().setMessage("Nenhum usuario encontrado");
+			return logarResponse;
+		}
 		logarResponse.setToken(Jwts.builder().setSubject(usersRequest.getTelefone())
 				.signWith(SignatureAlgorithm.HS512, Constants.KEY_CRIPT).compact());
 
 		logarResponse.setUser(contato);
 		logarResponse.getMeta().setOk(true);
-		logarResponse.getMeta().setMessage("Logado com sucesoo!!");
+		logarResponse.getMeta().setMessage("Logado com sucesso!!");
 		return logarResponse;
+	}
+
+	public List<Contato> findAll() {
+		return repository.findAll();
 	}
 }

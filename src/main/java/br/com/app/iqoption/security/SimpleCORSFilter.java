@@ -1,7 +1,5 @@
 package br.com.app.iqoption.security;
 
-import io.jsonwebtoken.Jwts;
-
 import java.io.IOException;
 import java.rmi.ServerException;
 
@@ -18,6 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
 
 import br.com.app.iqoption.config.Constante;
+import io.jsonwebtoken.Jwts;
 
 @Component
 public class SimpleCORSFilter extends GenericFilterBean {
@@ -38,14 +37,12 @@ public class SimpleCORSFilter extends GenericFilterBean {
 		res.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, Accept, X-Requested-With");
 
 		HttpServletRequest req = (HttpServletRequest) request;
-
 		// if(req.getMethod().equalsIgnoreCase("/OPTIONS/")){
 		// chain.doFilter(request, response);
 		// }
 
-//		if (!req.getRequestURI().contains("/login/")) {
-		if (true){
-			String header = req.getHeader("Autorization");
+		if (!req.getRequestURI().contains("/login/")) {
+			String header = req.getHeader("Authorization");
 
 			if (header == null || !header.startsWith("Bearer ")) {
 				throw new ServerException("Token inválido.");
@@ -58,8 +55,9 @@ public class SimpleCORSFilter extends GenericFilterBean {
 				// TODO: handle exception
 			}
 		}
-
+		
 		chain.doFilter(request, response);
+		
 	}
 
 }

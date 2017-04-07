@@ -13,6 +13,10 @@ public interface UsersRepository extends JpaRepository<Contato, Long>{
 
 	@Query("SELECT u FROM #{#entityName} u WHERE u.numero = :telefone AND u.senha = :senha")
 	Contato findByLogin(@Param("telefone") String telefone, @Param("senha") String senha);
+
+	Contato findByNumero(@Param("meuNumero") String meuNumero);
+
+//	List<Contato> buscarContatosPorNumero();
 	
 	
 

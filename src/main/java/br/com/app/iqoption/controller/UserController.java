@@ -1,13 +1,13 @@
 package br.com.app.iqoption.controller;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.app.iqoption.model.Contato;
 import br.com.app.iqoption.request.UsersRequest;
 import br.com.app.iqoption.response.LogarResponse;
 import br.com.app.iqoption.response.UsersResponse;
@@ -29,10 +29,9 @@ public class UserController {
 		return service.logar(user);
 	}
 
-	@RequestMapping(value = "teste", method = RequestMethod.POST)
-	public Map<String, String> logar() {
-		Map<String, String> response = new HashMap<>();
-		response.put("teste", "valor de teste");
-		return response;
+	@RequestMapping(value = "login/teste", method = RequestMethod.GET)
+	public List<Contato> teste() {
+
+		return service.findAll();
 	}
 }
