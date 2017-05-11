@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.app.iqoption.response.ContatoResponse;
 import br.com.app.iqoption.service.ContatoService;
 import br.com.app.iqoption.utils.Urls;
 
@@ -19,5 +20,10 @@ public class ContatoController {
 	@RequestMapping(value = Urls.ADD_NOVO_CONTATO, method = RequestMethod.POST)
 	public Map<String, Object> cadastrarUmContatoAosMeusContatos(Map<String, String> request) {
 		return service.cadastrarUmContatoAosMeusContatos(request);
+	}
+	
+	@RequestMapping(value = Urls.BUSCAR_CONTATOS, method = RequestMethod.GET)
+	public ContatoResponse buscarContatos() {
+		return service.buscarContatos();
 	}
 }

@@ -16,9 +16,5 @@ public interface UsersRepository extends JpaRepository<Contato, Long>{
 
 	Contato findByNumero(@Param("meuNumero") String meuNumero);
 
-//	List<Contato> buscarContatosPorNumero();
-	
-	
-
 }
 	

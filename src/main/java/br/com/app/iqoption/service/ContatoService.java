@@ -1,6 +1,7 @@
 package br.com.app.iqoption.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import br.com.app.iqoption.model.Contato;
 import br.com.app.iqoption.model.Meta;
 import br.com.app.iqoption.repository.UsersRepository;
+import br.com.app.iqoption.response.ContatoResponse;
 
 @Service
 public class ContatoService {
@@ -32,6 +34,17 @@ public class ContatoService {
 		response.put(Meta.META, meta);
 		response.put(Contato.CONTATO, repository.save(meuContato));
 
+		return response;
+	}
+
+	/**
+	 * Buscar todos os contatos no banco
+	 * @return lista de contatos
+	 */
+	public ContatoResponse buscarContatos() {
+		ContatoResponse response = new ContatoResponse();
+		response.setContatos(repository.findAll());
+		response.getMeta().setOk(true);
 		return response;
 	}
 

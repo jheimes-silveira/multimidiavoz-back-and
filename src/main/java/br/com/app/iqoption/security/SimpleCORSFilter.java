@@ -41,7 +41,9 @@ public class SimpleCORSFilter extends GenericFilterBean {
 		// chain.doFilter(request, response);
 		// }
 
-		if (!req.getRequestURI().contains("/login/")) {
+//		if (!req.getRequestURI().contains("/login/") &&
+//				!req.getRequestURI().contains("swagger-ui")) {
+			if (false) {
 			String header = req.getHeader("Authorization");
 
 			if (header == null || !header.startsWith("Bearer ")) {
@@ -52,7 +54,7 @@ public class SimpleCORSFilter extends GenericFilterBean {
 			try {
 				Jwts.parser().setSigningKey(Constante.KEY_CRIPT).parseClaimsJwt(token).getBody();
 			} catch (Exception e) {
-				// TODO: handle exception
+				throw new ServerException("Token inválido.");
 			}
 		}
 		
