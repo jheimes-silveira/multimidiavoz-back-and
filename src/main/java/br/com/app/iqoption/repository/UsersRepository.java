@@ -1,6 +1,8 @@
 package br.com.app.iqoption.repository;
 
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,6 +17,9 @@ public interface UsersRepository extends JpaRepository<Contato, Long>{
 	Contato findByLogin(@Param("telefone") String telefone, @Param("senha") String senha);
 
 	Contato findByNumero(@Param("meuNumero") String meuNumero);
+	
+	@Query("SELECT u FROM #{#entityName} u")
+	List<Contato> findAll();
 
 }
 	

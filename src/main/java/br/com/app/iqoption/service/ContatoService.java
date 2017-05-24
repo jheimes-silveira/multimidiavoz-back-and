@@ -1,7 +1,6 @@
 package br.com.app.iqoption.service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +23,8 @@ public class ContatoService {
 		Meta meta = new Meta();
 		
 		String meuNumero = request.get(Contato.MEU_NUMERO);
-		String contatoNumero = request.get(Contato.CONTATO_NUMERO);
 		
 		Contato meuContato = repository.findByNumero(meuNumero);
-		Contato outroContato = repository.findByNumero(contatoNumero);
-		meuContato.getContatoListaTelefonica().add(outroContato);
 		meta.setOk(true);
 		meta.setMessage("Usuario add com sucesso.");
 		response.put(Meta.META, meta);

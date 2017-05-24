@@ -22,7 +22,7 @@ public class ContatoController {
 		return service.cadastrarUmContatoAosMeusContatos(request);
 	}
 	
-	@RequestMapping(value = Urls.BUSCAR_CONTATOS, method = RequestMethod.GET)
+	@RequestMapping(value = Urls.BUSCAR_CONTATOS, method = RequestMethod.POST)
 	public ContatoResponse buscarContatos() {
 		return service.buscarContatos();
 	}

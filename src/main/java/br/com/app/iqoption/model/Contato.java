@@ -1,17 +1,10 @@
 package br.com.app.iqoption.model;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 
 @Entity
 public class Contato {
@@ -36,26 +29,7 @@ public class Contato {
 	public static final String CONTATO_LISTA_TELEFONICA = "contatoListaTelefonica";
 	public static final String MEU_NUMERO = "meuNumero";
 	public static final String CONTATO_NUMERO = "contatoNumero";
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(
-		name="contatoListaTelefonica"
-		, joinColumns={
-			@JoinColumn(name="meuNumero")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="contatoNumero")
-			}
-		)
-	private List<Contato> contatoListaTelefonica = new ArrayList<>();
-	private Boolean enabled;
-
-	public Boolean getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-	}
+	
 
 	public Contato() {
 	}
@@ -90,14 +64,6 @@ public class Contato {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
-	}
-
-	public List<Contato> getContatoListaTelefonica() {
-		return contatoListaTelefonica;
-	}
-
-	public void setContatoListaTelefonica(List<Contato> contatoListaTelefonica) {
-		this.contatoListaTelefonica = contatoListaTelefonica;
 	}
 
 }
