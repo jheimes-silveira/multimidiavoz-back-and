@@ -1,6 +1,8 @@
 package br.com.app.iqoption.model;
 
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,12 +28,28 @@ public class Contato {
 	public static final String NUMERO = "numero";
 	private String numero;
 	
+	private List<Contato> contatos;
+
+	public List<Contato> getContatos() {
+		return contatos;
+	}
+
+	public void setContatos(List<Contato> contatos) {
+		this.contatos = contatos;
+	}
+
 	public static final String CONTATO_LISTA_TELEFONICA = "contatoListaTelefonica";
 	public static final String MEU_NUMERO = "meuNumero";
 	public static final String CONTATO_NUMERO = "contatoNumero";
 	
 
 	public Contato() {
+	}
+
+	public Contato(String nome, String numero) {
+		super();
+		this.nome = nome;
+		this.numero = numero;
 	}
 
 	public Long getId() {

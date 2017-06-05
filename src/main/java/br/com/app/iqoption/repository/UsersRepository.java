@@ -18,8 +18,8 @@ public interface UsersRepository extends JpaRepository<Contato, Long>{
 
 	Contato findByNumero(@Param("meuNumero") String meuNumero);
 	
-	@Query("SELECT u FROM #{#entityName} u")
-	List<Contato> findAll();
+	@Query("SELECT u FROM #{#entityName} u WHERE u.id <> :id")
+	List<Contato> findAll(@Param("id") Long id);
 
 }
 	

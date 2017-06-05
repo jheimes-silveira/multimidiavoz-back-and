@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.app.iqoption.response.ContatoResponse;
@@ -23,7 +24,7 @@ public class ContatoController {
 	}
 	
 	@RequestMapping(value = Urls.BUSCAR_CONTATOS, method = RequestMethod.POST)
-	public ContatoResponse buscarContatos() {
-		return service.buscarContatos();
+	public ContatoResponse buscarContatos(@RequestParam Map<String, String> request) {
+		return service.buscarContatos(request);
 	}
 }

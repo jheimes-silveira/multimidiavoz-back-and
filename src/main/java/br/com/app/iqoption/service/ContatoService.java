@@ -37,9 +37,14 @@ public class ContatoService {
 	 * Buscar todos os contatos no banco
 	 * @return lista de contatos
 	 */
-	public ContatoResponse buscarContatos() {
+	public ContatoResponse buscarContatos(Map<String, String> request) {
 		ContatoResponse response = new ContatoResponse();
-		response.setContatos(repository.findAll());
+		if (request.containsKey("idUser")) {			
+			Long id = Long.valueOf(request.get("idUser"));
+			response.setContatos(repository.findAll(id));
+		} else {
+			response.setContatos(repository.findAll());			
+		}
 		response.getMeta().setOk(true);
 		return response;
 	}
